@@ -49,8 +49,17 @@ function ctrl_c (){
 
 # Con un mv se sobreescribe el Archivo preexistente
 
+#ip a | grep -oP "(^\d)(.+[:$])" | cut -d ":" -f 2
+
+#ip a | grep -PA2 interfaz
+
 function dir_ip(){
-	ip_d_red=$(ip a | grep 2 | grep -oP '\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}' | awk 'NR==2')
+	echo -e "Escoge una Interfaz: "
+	for i in $(ip a | grep -oP "(^\d)(.+[:$])" | cut -d ":" -f 2);do
+		echo -e "==> $i"
+	done
+	echo -en "==> " && read i_nterfaz
+	ip_d_red=$(ip a | grep -A2 $i_nterfaz | grep -oP '\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}' | awk 'NR==1')
 	ip_d_s=$(echo $ip_d_red | cut -d '.' -f 1,2,3)
 	ip_cero=$(echo $ip_d_s".0")
 	cidr=$(ip a | grep 2 | grep -oP '\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}/\d{1,2}' | awk 'NR==2')
@@ -71,7 +80,7 @@ function packages(){
 		echo -e "(V)"
 	else
 		echo -e "(X)"
-		sudo apt-get install bind9 > /dev/null 2>&1
+		sudo apt-get install bind9 -y > /dev/null 2>&1
 	fi
 	echo -en "bind9-utils.................."
 	test -f /etc/systemd/system/bind9.service 
@@ -79,7 +88,7 @@ function packages(){
 		echo -e "(V)"
 	else
 		echo -e "(X)"
-		sudo apt-get install bind9 > /dev/null 2>&1
+		sudo apt-get install bind9-utils -y > /dev/null 2>&1
 	fi
 }
 
