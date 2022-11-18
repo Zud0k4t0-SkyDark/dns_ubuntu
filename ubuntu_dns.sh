@@ -53,6 +53,9 @@ function ctrl_c (){
 
 #ip a | grep -PA2 interfaz
 
+#Variables Globales
+
+name="site"
 function dir_ip(){
 	echo -e "Escoge una Interfaz: "
 	for i in $(ip a | grep -oP "(^\d)(.+[:$])" | cut -d ":" -f 2);do
@@ -102,8 +105,11 @@ function org(){
 	echo -en "\tDireccion de Red\t====>\t\t$ip_cero\n"
 	ip="$ip_new_use"
 	echo -en "Ip:\n==> " && read ip
-	name="site"
+	name=$name
+	echo -e $name
 	echo -en "Nombre:\n==> " && read name
+	echo -e $name
+	sleep 5
 	clear
 	echo -e "[*] Direcciones de Red:"
 	for i in $(ip a | grep -oP "(^\d)(.+)([a-z]\d{1,3})" | cut -d ":" -f 2);do
