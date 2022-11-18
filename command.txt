@@ -1,0 +1,8 @@
+ip a | grep -oP "(^\d)(.+[:$])" | cut -d ":" -f 2
+
+Comando pasando una interfaz
+==> ip a | grep  -PA2 "(^\d)(.+)(eth0)([:$])"
+Comando para sacar la ip con el CIDR:
+==> ip a | grep  -PA2 "(^\d)(.+)(eth0)([:$])" | grep -oP "(\d{1,}.\d{1,}.\d{1,}.\d{1,})(/\d{1,})"
+Para poder Saber la IPv6
+==> ip a | grep  -PA2 "(^\d)(.+)(eth0)([:$])" | grep -oP "(\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2})" | awk "NR==1"\n
