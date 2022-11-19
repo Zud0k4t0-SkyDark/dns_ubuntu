@@ -104,10 +104,12 @@ function org(){
 	echo -en "\tNombre\t\t\t====>\t\tsite\n"
 	echo -en "\tDireccion de Red\t====>\t\t$ip_cero\n"
 	ip="$ip_new_use"
+	echo $ip
 	echo -en "Ip:\n==> " && read ip
+	echo $ip
 	name=$name
 	echo -e $name
-	echo -en "Nombre:\n==> " && read name
+	echo -en "Nombre:\n==> " && read name || name=$name
 	echo -e $name
 	sleep 5
 	clear
