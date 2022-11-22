@@ -6,3 +6,5 @@ Comando para sacar la ip con el CIDR:
 ==> ip a | grep  -PA2 "(^\d)(.+)(eth0)([:$])" | grep -oP "(\d{1,}.\d{1,}.\d{1,}.\d{1,})(/\d{1,})"
 Para poder Saber la IPv6
 ==> ip a | grep  -PA2 "(^\d)(.+)(eth0)([:$])" | grep -oP "(\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2})" | awk "NR==1"\n
+Comando para Grepear por la  el CIDR mucho mejor
+==>ip a | grep -A2 enp0s8 | grep -oP "\d{1,}.*[4][\/$]\d{1,}"
