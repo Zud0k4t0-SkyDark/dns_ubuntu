@@ -69,6 +69,8 @@ function dir_ip(){
 #	cidr=$(ip a | grep 2 | grep -oP '\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}/\d{1,2}' | awk 'NR==2')
 	cidr=$(ip a | grep  -PA2 "(^\d)(.+)($name_Interfaz)([:$])" | grep -oP "(\d{1,}.){4}(/\d{1,})")
 	ip_new_use=$(echo $ip_d_s.34)
+	echo -e $ip_new_use
+	sleep 5
 }
 
 function packages(){
