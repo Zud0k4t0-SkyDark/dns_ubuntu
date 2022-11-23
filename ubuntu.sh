@@ -61,16 +61,15 @@ function dir_ip(){
 		echo -e "==> $i"
 	done
 	echo -en "# " && read name_interfaz
-	ip_d_red=$(ip a | grep -A2 $name_interfaz | grep -oP '\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}' | awk 'NR==1')
+	ip_d_red=$(ip a | grep -A2 $name_interfaz | grep -oP '(\d{1,}\.\d{1,}\.\d{1,}\.\d{1,})')
 	ip_d_s=$(echo $ip_d_red | cut -d '.' -f 1,2,3)
 	echo $ip_d_s
 	ip_cero=$(echo $ip_d_s".0")
 	echo $ip_cero
 #	cidr=$(ip a | grep 2 | grep -oP '\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}/\d{1,2}' | awk 'NR==2')
 	cidr=$(ip a | grep  -PA2 "(^\d)(.+)($name_Interfaz)([:$])" | grep -oP "(\d{1,}.){4}(/\d{1,})")
+	echo $cidr
 	ip_new_use=$(echo $ip_d_s.34)
-	echo -e $ip_new_use
-	sleep 5
 }
 
 function packages(){
