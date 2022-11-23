@@ -6,3 +6,10 @@ Comando para sacar la ip con el CIDR:
 ==> ip a | grep  -PA2 "(^\d)(.+)(eth0)([:$])" | grep -oP "(\d{1,}.\d{1,}.\d{1,}.\d{1,})(/\d{1,})"
 Para poder Saber la IPv6
 ==> ip a | grep  -PA2 "(^\d)(.+)(eth0)([:$])" | grep -oP "(\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2})" | awk "NR==1"\n
+Comando para pillar mejor la CIDR
+==> ip a | grep  -PA2 "(^\d)(.+)(eth0)([:$])" | grep -oP "(\d{1,}.){4}(/\d{1,})"
+Comando para poder filtrar el 3nº de 192.168.1.20/30
+==> echo $n | grep -oP "(\d{1,}.){1,}([/$])" | grep -oP "(\.\d{1,3}[\/$])" | grep -oP "([^*.].)"
+Lo que filtrara sera el 20
+Comando para poder filtrar pero esta vez mejor te pilla todo el tercer nº
+==> echo $n | grep -oP "(\d{1,}.){1,}([/$])" | grep -oP "(\.\d{1,3}[\/$])" | grep -oP "([^.].*[^/])"
